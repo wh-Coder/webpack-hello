@@ -141,3 +141,39 @@ npm i -D style-loader
 npm i -D css-loader
 css-loader使你能够使用类似@import和url（...）的方法实现require的功能
 
+## 第06节：插件配置：配置JS压缩
+
+loader 有三种写法：
+
+```
+module:{
+    rules:[
+        {
+            test:/\.css$/,
+
+            // 1)
+            use:['style-loader','css-loader']
+
+            // 2)
+            loader:['style-loader','css-loader']
+
+            // 3)
+            use: [{
+                loader: "style-loader"
+            }, {
+                loader: "css-loader"
+            }]
+        }
+    ]
+}
+
+```
+
+uglifyjs-webpack-plugin(JS压缩插件，简称uglify)
+注意：虽然uglifyjs是插件，但是webpack版本里默认已经集成，不需要再次安装。
+
+直接引入 
+const uglify = require('uglifyjs-webpack-plugin');
+
+plugins:[  new uglify()  ],
+
