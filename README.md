@@ -224,3 +224,12 @@ url-loader：如果图片较多，会发很多http请求，会降低页面性能
 }
 ```
 
+## 第09节：图片迈坑：CSS分离与图片路径处理
+
+有些场合得把CSS分开
+
+npm install --save-dev extract-text-webpack-plugin
+
+new extractTextPlugin("/css/index.css")
+
+使用 http://0.0.0.0:1717 可以代替 localhost:1717
