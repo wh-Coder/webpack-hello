@@ -13,3 +13,12 @@ npm i -D webpack
 npm i -g webpack
 webpack -v
 ```
+
+
+### 第02节：让你快速上手一个Demo
+
+第一条命令
+
+webpack {entry file} {destination for bundled file}
+
+webpack src/entry.js dist/bundle.js
