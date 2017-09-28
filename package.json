@@ -1,0 +1,14 @@
+{
+  "name": "jspang-webpack",
+  "version": "1.0.0",
+  "description": "webpack-guide",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wh",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.6.0"
+  }
+}
