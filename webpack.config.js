@@ -20,7 +20,16 @@ module.exports = {
             {
               test: /\.css$/,
               use: [ 'style-loader', 'css-loader' ]
-            }
+            },{
+                test:/\.(png|jpg|gif)/ ,
+                use:[{
+                    loader:'url-loader',
+                    options:{
+                        // 是把小于500000B的文件打成Base64的格式，写入JS。
+                        limit:500000
+                    }
+                }]
+             }
           ]
     },
     //插件，用于生产模版和各项功能
