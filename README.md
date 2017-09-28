@@ -22,3 +22,41 @@ webpack -v
 webpack {entry file} {destination for bundled file}
 
 webpack src/entry.js dist/bundle.js
+
+### 第03节：配置文件：入口和出口
+
+编写 webpack.config.js
+
+```
+module.exports={
+
+    //入口文件的配置项，可以是单一入口，也可以是多入口。
+    entry:{},
+
+    //出口文件的配置项
+    output:{},
+
+    //模块：例如解读CSS,图片如何转换，压缩
+    module:{},
+
+    //插件，用于生产模版和各项功能
+    plugins:[],
+
+    //配置webpack开发服务功能
+    devServer:{}
+}
+
+```
+
+配置好，执行 webpack 
+
+同时支持多入口，多出口配置
+
+```
+output: {
+    filename: '[name].js'
+}
+```
+
+
+
