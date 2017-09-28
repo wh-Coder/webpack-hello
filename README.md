@@ -177,3 +177,27 @@ const uglify = require('uglifyjs-webpack-plugin');
 
 plugins:[  new uglify()  ],
 
+## 第07节：插件配置：HTML文件的发布
+
+移动 index.html 去掉 js 的引入
+
+取而代之的 html-webpack-plugin 插件
+
+npm install --save-dev html-webpack-plugin
+
+```
+new htmlPlugin({
+    // 是对html文件进行压缩，removeAttrubuteQuotes是却掉属性的双引号。
+    minify:{
+        removeAttributeQuotes:true
+    },
+    // 为了开发中js有缓存效果，所以加入hash，这样可以有效避免缓存JS
+    hash:true,
+    // 是要打包的html模版路径和文件名称
+    template:'./src/index.html'
+    
+})WE
+```
+
+npm run server 不会在生成任何文件了
+
