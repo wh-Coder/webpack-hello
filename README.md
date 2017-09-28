@@ -59,4 +59,43 @@ output: {
 ```
 
 
+### 第04节：配置文件： 服务和热更新
 
+- 设置 webpack-dev-server
+
+npm install webpack-dev-server –save-dev
+
+在 webpack.config.js 中配置服务参数
+
+```
+devServer:{
+
+    //设置基本目录结构，用于找到程序打包地址。
+    contentBase:path.resolve(__dirname,'dist'),
+    
+    //服务器的IP地址，可以使用IP也可以使用localhost
+    host:'localhost',
+    
+    //服务端压缩是否开启
+    compress:true,
+    
+    //配置服务端口号
+    port:1717
+}
+```
+
+本地的 webpack-dev-server 不能直接执行
+
+```
+"scripts": {
+    "server":"webpack-dev-server",
+    "webpack":"webpack"
+ },
+
+ ```
+
+ 执行 npm run server , 并打开浏览器 localhost:1717
+
+ - 支持热更新
+
+ webpack 3.6之前的热更新不是默认的，需要额外配置
