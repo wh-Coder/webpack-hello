@@ -99,3 +99,45 @@ devServer:{
  - 支持热更新
 
  webpack 3.6之前的热更新不是默认的，需要额外配置
+
+ ## 第05节：模块：CSS文件打包
+
+> Loaders是Webpack最重要的功能之一，他也是Webpack如此盛行的原因。通过使用不同的Loader，Webpack可以的脚本和工具，从而对不同的文件格式进行特定处理。
+
+作用：
+- SASS --> CSS
+- ES6/7  -->  ES5
+- JSX --> JS
+
+配置写在 webpack.config.js 中的 module.rules 属性中
+
+```
+module:{
+    rules: [
+        {
+            // 用于匹配处理文件的扩展名的表达式，这个选项是必须进行配置的；
+            test: /\.css$/,
+
+            // loader名称，就是你要使用模块的名称，这个选项也必须进行配置，否则报错；
+            use: [ 'style-loader', 'css-loader' ],
+
+            手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
+            include/exclude:,
+
+            为loaders提供额外的设置选项（可选）
+            query：,
+        }.
+        ...ohters
+    ]
+}
+```
+配置css-loader 和 style-loader 就可以使用
+
+import css from './css/index.css';
+
+npm i -D style-loader 
+所有的计算后的样式加入页面中
+
+npm i -D css-loader
+css-loader使你能够使用类似@import和url（...）的方法实现require的功能
+
