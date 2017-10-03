@@ -29,19 +29,23 @@ module.exports = {
               // use: [ 'style-loader', 'css-loader' ]
               use: extractTextPlugin.extract({
                 fallback: "style-loader",
-                use: "css-loader"
+                use: "css-loader",
+                publicPath: '/',   // 注意配置这一部分，根据目录结构自由调整
               })
             },{
                 test:/\.(png|jpg|gif)/ ,
                 use:[{
                     loader:'url-loader',
                     options:{
-                        // 是把小于500000B的文件打成Base64的格式，写入JS。
+                        // 是把小于 500000 B的文件打成Base64的格式，写入JS。
                         limit:50,
                         outputPath:'images/',
                     }
                 }]
-             }
+             },{
+                test: /\.(htm|html)$/i,
+                 use:[ 'html-withimg-loader'] 
+            }
           ]
     },
     //插件，用于生产模版和各项功能
@@ -60,7 +64,7 @@ module.exports = {
            
         }),
         // 把CSS独立出来不打包
-        new extractTextPlugin("/css/index.css")
+        new extractTextPlugin("css/index.css")
     ],
     //配置webpack开发服务功能
     devServer: {

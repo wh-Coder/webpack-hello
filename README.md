@@ -252,3 +252,22 @@ git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
 
+## 第10节：图片迈坑：处理HTML中的图片
+
+img 图片路径问题使用 html-withimg-loader
+
+```
+{
+    test: /\.(htm|html)$/i,
+     use:[ 'html-withimg-loader'] 
+}
+```
+background-iamge 也会有路径问题 在
+
+```
+use: extractTextPlugin.extract({
+    fallback: "style-loader",
+    use: "css-loader",
+    publicPath: '/',   // 注意配置这一部分，根据目录结构自由调整
+})
+```
