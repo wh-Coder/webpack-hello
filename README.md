@@ -233,3 +233,22 @@ npm install --save-dev extract-text-webpack-plugin
 new extractTextPlugin("/css/index.css")
 
 使用 http://0.0.0.0:1717 可以代替 localhost:1717
+
+
+## 第09+节：图片打包，修改 gitignore
+
+改变图片打包路径：
+```
+loader:'url-loader',
+options:{
+    limit:5000,
+    outputPath:'images/',
+}
+```
+
+修改 .gitignore
+
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+

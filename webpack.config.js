@@ -37,7 +37,8 @@ module.exports = {
                     loader:'url-loader',
                     options:{
                         // 是把小于500000B的文件打成Base64的格式，写入JS。
-                        limit:500000
+                        limit:50,
+                        outputPath:'images/',
                     }
                 }]
              }
