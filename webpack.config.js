@@ -1,10 +1,10 @@
-var website ={
-    publicPath:"http://0.0.0.0:1717"
+var website = {
+    publicPath: "http://0.0.0.0:1717"
 }
 
 const path = require('path');
 const uglify = require('uglifyjs-webpack-plugin');
-const htmlPlugin= require('html-webpack-plugin');
+const htmlPlugin = require('html-webpack-plugin');
 const extractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     //入口文件的配置项
@@ -22,46 +22,64 @@ module.exports = {
         // publicPath: website.publicPath
     },
     //模块：例如解读CSS,图片如何转换，压缩
-    module:{
+    module: {
         rules: [
             {
-              test: /\.css$/,
-              // use: [ 'style-loader', 'css-loader' ]
-              use: extractTextPlugin.extract({
-                fallback: "style-loader",
-                use: "css-loader",
-                publicPath: '/',   // 注意配置这一部分，根据目录结构自由调整
-              })
-            },{
-                test:/\.(png|jpg|gif)/ ,
-                use:[{
-                    loader:'url-loader',
-                    options:{
+                test: /\.css$/,
+                // use: [ 'style-loader', 'css-loader' ]
+                use: extractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader",
+                    publicPath: '/',   // 注意配置这一部分，根据目录结构自由调整
+                })
+            }, {
+                test: /\.(png|jpg|gif)/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
                         // 是把小于 500000 B的文件打成Base64的格式，写入JS。
-                        limit:50,
-                        outputPath:'images/',
+                        limit: 50,
+                        outputPath: 'images/',
                     }
                 }]
-             },{
+            }, {
                 test: /\.(htm|html)$/i,
-                 use:[ 'html-withimg-loader'] 
+                use: ['html-withimg-loader']
+            }, {
+                test: /\.less$/,
+                // use: [{
+                //     loader: "style-loader" // creates style nodes from JS strings
+                // }, {
+                //     loader: "css-loader" // translates CSS into CommonJS
+                // }, {
+                //     loader: "less-loader" // compiles Less to CSS
+                // }]
+                use: extractTextPlugin.extract({
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: "less-loader"
+                    }],
+                    // use style-loader in development
+                    fallback: "style-loader"
+                })
             }
-          ]
+        ]
     },
     //插件，用于生产模版和各项功能
-    plugins: [  
+    plugins: [
         // 混淆代码
         // new uglify(),
         new htmlPlugin({
             // 是对html文件进行压缩，removeAttrubuteQuotes是却掉属性的双引号。
-            minify:{
-                removeAttributeQuotes:true
+            minify: {
+                removeAttributeQuotes: true
             },
             // 为了开发中js有缓存效果，所以加入hash，这样可以有效避免缓存JS
-            hash:true,
+            hash: true,
             // 是要打包的html模版路径和文件名称
-            template:'./src/index.html'
-           
+            template: './src/index.html'
+
         }),
         // 把CSS独立出来不打包
         new extractTextPlugin("css/index.css")

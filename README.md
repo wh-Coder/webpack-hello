@@ -271,3 +271,35 @@ use: extractTextPlugin.extract({
     publicPath: '/',   // 注意配置这一部分，根据目录结构自由调整
 })
 ```
+
+## 第11节：Less文件如何打包
+
+```
+npm install --save-dev less less-loader
+
+{
+    test: /\.less$/,
+    // use: [{
+    //     loader: "style-loader" // creates style nodes from JS strings
+    // }, {
+    //     loader: "css-loader" // translates CSS into CommonJS
+    // }, {
+    //     loader: "less-loader" // compiles Less to CSS
+    // }]
+    use: extractTextPlugin.extract({
+        use: [{
+            loader: "css-loader"
+        }, {
+            loader: "less-loader"
+        }],
+        // use style-loader in development
+        fallback: "style-loader"
+    })
+}
+
+```
+
+把 less 编译后单独打包
+
+
+
